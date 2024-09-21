@@ -1,6 +1,6 @@
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as bootstrap from 'bootstrap'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { renderToDoList } from './components/ToDoList';
 
 const app = document.getElementById('app');

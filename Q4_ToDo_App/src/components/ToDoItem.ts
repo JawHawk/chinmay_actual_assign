@@ -14,8 +14,8 @@ const addItemForm = document.getElementById('addItemForm') as HTMLFormElement;
 const addItemModal = document.getElementById('addItemModal') as HTMLElement;
 const modalSubmitButton = document.getElementById('modalSubmitButton') as HTMLButtonElement;
 
-addItemModal.addEventListener('show.bs.modal', (event: Event) => {
-    const target = (event as Bootstrap.ModalEvent).relatedTarget as HTMLElement;
+addItemModal.addEventListener('show.bs.modal', (event: Event & { relatedTarget?: HTMLElement }) => {
+    const target = event.relatedTarget as HTMLElement;
     if (target.getAttribute("data-operation") === "addItem") {
         openAddItemModal();
     }
