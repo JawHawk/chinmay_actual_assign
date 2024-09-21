@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "title": "Sample Task 1",
+      "description": "This is a sample task description.",
+      "endDate": "2024-09-30",
+      "priority": "High",
+      "status": "todo"
+    },
+    {
+      "id": 2,
+      "title": "Sample Task 2",
+      "description": "This is another task.",
+      "endDate": "2024-10-05",
+      "priority": "Low",
+      "status": "doing"
+    }
+  ]
+  

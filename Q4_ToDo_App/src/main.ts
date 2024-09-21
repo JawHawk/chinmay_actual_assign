@@ -1,9 +1,13 @@
 import './style.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { getInitialData } from './utils/storage';
+import { ToDoItemModel } from './models/ToDoItemModel';
+import { renderToDoList } from './components/ToDoList';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <p class="read-the-docs">
-      This is a sample To Do List Application !
-    </p>
-  </div>
-`
+let items: ToDoItemModel[] = getInitialData();
+
+const app = document.getElementById('app');
+if(app) {
+  renderToDoList(app, items);
+}
