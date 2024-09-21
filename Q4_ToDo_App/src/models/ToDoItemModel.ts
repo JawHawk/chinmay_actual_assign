@@ -1,9 +1,13 @@
+export type ToDoStatus = 'todo' | 'doing' | 'done';
+
+export type ToDoPriority = 'high' | 'medium' | 'low';
+
 export interface ToDoItemModel {
     id: number;
     title: string;
     description: string;
     endDate: string;
-    priority: string;
+    priority: ToDoPriority;
     status: ToDoStatus;
 }
 
@@ -12,5 +16,3 @@ export interface CategorizedToDoItems {
     doingItems: ToDoItemModel[];
     doneItems: ToDoItemModel[];
 }
-
-export type ToDoStatus = 'todo' | 'doing' | 'done';

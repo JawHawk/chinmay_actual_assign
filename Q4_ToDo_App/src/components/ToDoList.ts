@@ -1,8 +1,9 @@
 import { renderToDoItem } from './ToDoItem';
-import { CategorizedToDoItems, ToDoItemModel } from '../models/ToDoItemModel';
+import { ToDoItemModel } from '../models/ToDoItemModel';
+import { getItems } from '../services/ToDoService';
 
-export const renderToDoList = (categorizedItems: CategorizedToDoItems): void => {
-    const { todoItems, doingItems, doneItems } = categorizedItems;
+export const renderToDoList = (status?: string, sortBy?: string): void => {
+    const { todoItems, doingItems, doneItems } = getItems(status, sortBy);
 
     const todoColumn = document.getElementById('task-todo-column');
     const doingColumn = document.getElementById('task-doing-column');
