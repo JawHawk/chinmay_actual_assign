@@ -4,5 +4,13 @@ export interface ToDoItemModel {
     description: string;
     endDate: string;
     priority: string;
-    status: 'todo' | 'doing' | 'done';
+    status: ToDoStatus;
 }
+
+export interface CategorizedToDoItems {
+    todoItems: ToDoItemModel[];
+    doingItems: ToDoItemModel[];
+    doneItems: ToDoItemModel[];
+}
+
+export type ToDoStatus = 'todo' | 'doing' | 'done';

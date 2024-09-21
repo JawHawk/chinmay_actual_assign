@@ -3,4 +3,21 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
+}
+
+body {
+  background-color: #6c1c4d !important;
+}
+
+.dark-bg {
+  background-color: #101204 !important;
+}
+
+.list-item {
+  background-color: #22272B !important;
+}
+
+.radius-12 {
+  border-radius: 12px !important;
 }
