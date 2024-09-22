@@ -79,3 +79,10 @@ A Preprocessor like Sass can also be used to improve CSS scalability.
 I would also like to add Unit Tests using a testing framework like Jest to ensure the functionality remains intact during development.
 
 These are the build steps I would follow for a more robust application.
+
+## Scope for Improvements
+
+I could have added more features like Drag & Drop to columns similar to Trello, calender to alert pending tasks etc. if time permitted. Due to ongoing Exams, I could only implement the necessary functions.
+
+## Deployed Link
+`chinmay-actual-assign.netlify.app/`
