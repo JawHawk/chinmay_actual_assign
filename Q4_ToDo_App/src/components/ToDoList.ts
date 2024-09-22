@@ -2,6 +2,7 @@ import { renderToDoItem } from './ToDoItem';
 import { ToDoItemModel } from '../models/ToDoItemModel';
 import { getItems } from '../services/ToDoService';
 
+// Main Function that renders each status List with the To Do Items 
 export const renderToDoList = (status?: string, sortBy?: string): void => {
     const { todoItems, doingItems, doneItems } = getItems(status, sortBy);
 
@@ -21,18 +22,4 @@ export const renderToDoList = (status?: string, sortBy?: string): void => {
     todoItems.forEach(item => renderToDoItem(todoColumn, { item }));
     doingItems.forEach(item => renderToDoItem(doingColumn, { item }));
     doneItems.forEach(item => renderToDoItem(doneColumn, { item }));
-};
-
-export const addNewItemToColumn = (item: ToDoItemModel): void => {
-    const columnIdMap = {
-        todo: 'task-todo-column',
-        doing: 'task-doing-column',
-        done: 'task-done-column'
-    };
-
-    const column = document.getElementById(columnIdMap[item.status]);
-
-    if (column) {
-        renderToDoItem(column, { item });
-    }
 };

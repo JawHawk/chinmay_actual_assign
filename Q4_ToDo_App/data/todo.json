@@ -4,15 +4,15 @@
       "title": "Sample Task 1",
       "description": "This is a sample task description.",
       "endDate": "2024-09-30",
-      "priority": "High",
+      "priority": "medium",
       "status": "todo"
     },
     {
       "id": 2,
-      "title": "Sample Task 2",
-      "description": "This is another task.",
+      "title": "Research about collaborative Tools",
+      "description": "As shared during the interview of the upcoming goal to add collaboration feature in WHERENESS. Explore more about WebRTC and WebSockets.",
       "endDate": "2024-10-05",
-      "priority": "Low",
+      "priority": "high",
       "status": "doing"
     }
   ]

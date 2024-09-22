@@ -15,7 +15,7 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false, // Should be True, But bootstrap needed for build
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },

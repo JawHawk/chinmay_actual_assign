@@ -16,3 +16,7 @@ export interface CategorizedToDoItems {
     doingItems: ToDoItemModel[];
     doneItems: ToDoItemModel[];
 }
+
+export interface ToDoItemUpdateModel extends ToDoItemModel {
+    newStatus: ToDoStatus;
+}

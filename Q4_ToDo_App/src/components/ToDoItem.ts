@@ -1,4 +1,4 @@
-import { ToDoItemModel, ToDoPriority, ToDoStatus } from "../models/ToDoItemModel";
+import { ToDoItemModel, ToDoItemUpdateModel, ToDoPriority, ToDoStatus } from "../models/ToDoItemModel";
 import { addItem, deleteItem, updateItem } from "../services/ToDoService";
 import * as bootstrap from "bootstrap";
 import { renderToDoList } from "./ToDoList";
@@ -7,8 +7,10 @@ interface ToDoItemProps {
     item: ToDoItemModel;
 }
 
+// Same Form is used both for add Item and Edit Item. 
+// isEditing decides if the new Item is added or existing Item is edited.
 let isEditing: boolean = false;
-let editingItemId: number | null = null;
+let editingItem:  ToDoItemModel | null = null;;
 
 const addItemForm = document.getElementById('addItemForm') as HTMLFormElement;
 const addItemModal = document.getElementById('addItemModal') as HTMLElement;
@@ -21,6 +23,7 @@ addItemModal.addEventListener('show.bs.modal', (event: Event & { relatedTarget?:
     }
 });
 
+// Handler Form Submit
 addItemForm.addEventListener('submit', (event: Event) => {
     event.preventDefault();
 
@@ -30,18 +33,18 @@ addItemForm.addEventListener('submit', (event: Event) => {
     const priority = (document.getElementById('itemPriority') as HTMLSelectElement).value as ToDoPriority;
     const status = (document.getElementById('itemStatus') as HTMLSelectElement).value as ToDoStatus;
     
-    if (isEditing && editingItemId !== null) {
-        const updatedItem: ToDoItemModel = {
-            id: editingItemId,
+    if (isEditing && editingItem !== null) {
+        const updatedItem: ToDoItemUpdateModel = {
+            ...editingItem, 
             title,
             description,
             endDate: dueDate,
             priority,
-            status
+            newStatus: status 
         };
         updateItem(updatedItem);
         isEditing = false;
-        editingItemId = null;
+        editingItem = null;
     } else {
         const newItem: ToDoItemModel = {
             id: Date.now(),
@@ -63,13 +66,15 @@ addItemForm.addEventListener('submit', (event: Event) => {
     modalSubmitButton.textContent = 'Add Item';
 });
 
+// Opens Modal after add Item Click
 const openAddItemModal = (): void => {
     addItemForm.reset();
     isEditing = false;
-    editingItemId = null;
+    editingItem = null;
     modalSubmitButton.textContent = 'Add Item';
 };
 
+// Opens Modal after Edit Item Click
 export const openEditModal = (item: ToDoItemModel): void => {
     (document.getElementById('itemTitle') as HTMLInputElement).value = item.title;
     (document.getElementById('itemDescription') as HTMLTextAreaElement).value = item.description;
@@ -78,7 +83,7 @@ export const openEditModal = (item: ToDoItemModel): void => {
     (document.getElementById('itemStatus') as HTMLSelectElement).value = item.status;
 
     isEditing = true;
-    editingItemId = item.id;
+    editingItem = {...item};
     modalSubmitButton.textContent = 'Save Changes';
 };
 
@@ -95,6 +100,7 @@ function getPriorityColor(priority: string): string {
     }
 }
 
+// Main Function that appeneds a To Do Item to the Respective List
 export const renderToDoItem = (container: HTMLElement, { item }: ToDoItemProps): void => {
     const element = document.createElement('div');
     element.classList.add('list-item', 'card', 'text-light');
@@ -149,9 +155,9 @@ export const renderToDoItem = (container: HTMLElement, { item }: ToDoItemProps):
     });
 
     element.querySelector("#complete-item")?.addEventListener('click', () => {
-        const updatedItem: ToDoItemModel = {
+        const updatedItem: ToDoItemUpdateModel = {
             ...item,
-            status: "done" as ToDoStatus 
+            newStatus: "done" as ToDoStatus 
         };
         updateItem(updatedItem);
         renderToDoList();
