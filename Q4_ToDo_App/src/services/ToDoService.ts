@@ -73,7 +73,6 @@ export const deleteItem = (id: number): void => {
 export const updateItem = (updatedItem: ToDoItemUpdateModel): void => {
     const oldStatusKey = getStatusKey(updatedItem.status);
     const newStatusKey = getStatusKey(updatedItem.newStatus);
-    console.log(oldStatusKey, newStatusKey);
     
     // If the status hasn't changed, just update the item
     if (updatedItem.status === updatedItem.newStatus) {
@@ -90,11 +89,9 @@ export const updateItem = (updatedItem: ToDoItemUpdateModel): void => {
     if (oldIndex > -1) {
         const [item] = items[oldStatusKey].splice(oldIndex, 1); 
 
-        // Update the item's status
-        item.status = updatedItem.newStatus; // Update status
-
+        let newItem: ToDoItemModel = {...item, ...updatedItem, status: updatedItem.newStatus}
         // Add the item to the new status array
-        items[newStatusKey].push(item);
+        items[newStatusKey].push(newItem);
         saveData([...items.todoItems, ...items.doingItems, ...items.doneItems]);
     }
 };
