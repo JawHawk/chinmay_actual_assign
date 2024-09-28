@@ -8,7 +8,7 @@ This is a Typescript based To Do List Application with the following features:
 2. **Task Completion**: Mark tasks as complete and move them to the "Done" list.
 3. **Multiple Lists**: Tasks are separated into "To Do", "Doing", and "Done" lists.
 4. **Sorting**: Tasks can be sorted by **Priority** and **End/Due Date**.
-5. **No External Libraries**: The project is built using only **TypeScript** and **Bootstrap** for styling. Vite is used as a bundling tool, but no addtional JS library is used.
+5. **No External Libraries**: The project is built using only vanilla **JavaScript** and Bootstrap. No JS library is used.
 
 ## File Structure
 
@@ -17,21 +17,21 @@ This is a Typescript based To Do List Application with the following features:
 ├── public       # Static assets
 ├── src
 │   ├── style.css
-│   ├── main.ts                  # Main entry point 
+│   ├── main.ts                  # Main entry point
 │   ├── components
 │   │   ├── ToDoItem.ts          # Component for single To-Do item
-│   │   ├── ToDoList.ts          # Component for the entire list 
+│   │   ├── ToDoList.ts          # Component for the entire list
 │   ├── models
-│   │   └── ToDoItemModel.ts     # TypeScript interface for Items 
+│   │   └── ToDoItemModel.ts     # TypeScript interface for Items
 │   ├── services
-│   │   └── ToDoService.ts       # Service for handling data operations 
+│   │   └── ToDoService.ts       # Service for handling data operations
 │   ├── utils
 │       ├── storage.ts      # Utility functions for handling localStorage/JSON File
-│       ├── sortUtils.ts           
-│   
+│       ├── sortUtils.ts
+│
 ├── data
 │   └── todo.json                 # Initial data for ToDo list (can be static for reading)
-├── index.html 
+├── index.html
 ├── .gitignore                    # Git ignore file
 ├── package.json                  # NPM scripts and dependencies
 ├── README.md                     # Documentation
@@ -40,37 +40,43 @@ This is a Typescript based To Do List Application with the following features:
 ```
 
 ## Documentation to Run the Project
+
 ### 1. Requirements
 
 To run the project, ensure you have a modern browser like **Google Chrome**, **Firefox**, or **Edge**. No additional server setup is required since this is a front-end project.
 
 ### 2. Running the Project
 
-- **Step 1**: Clone the repository to your local machine:
+- **Step 1**: Clone the repository to your local machine: No need for this step if already done.
 
-   ```bash
-   git clone <repository-url>
-   ```
+  ```bash
+  git clone <repository-url>
+  ```
+
 - **Step 2**: Navigate into the project folder:
-    ```bash
-   cd Q4_To_Do_List
-   ```
-- **Step 3**: Install npm dependencies ( Vite & Bootstrap ):
+  ```bash
+  cd Q4_To_Do_List
+  ```
+- **Step 3**: Start Development Server:
+  Normally if HTML file is opened in browser, it will show a CORS error for js files used. To resolve this, a local server is needed. There are many ways to run this -
 
-    ```bash
-   npm i
-   ```
-- **Step 4**: Start Development Server:
+  1. Use python to start http server
 
-    ```bash
-   npm run dev
-   ```
-   Enjoy the Application on port 5173 i.e on
-   `http://localhost:5173/`
+     ```bash
+     python3 -m http.server
+     ```
 
-## Build Steps 
+     Enjoy the Application on port 8000 i.e on
+     `http://localhost:8000/`
 
-I have used Vite as a build tool for running the Development server and producing builds. It is beneficial as it provides features like Hot Module Replacement, Build Optimizations, Static File Handling etc.
+  2. Use `Live Server` VSCode Extension
+
+     Just download the `Live Server` extension and right click on HTML file to choose option `Open with Live Server`.
+     ![Live Server](./liveserver.png)
+
+## Build Steps
+
+I previously used Vite as a build tool for running the Development server and producing builds. It is beneficial as it provides features like Hot Module Replacement, Build Optimizations, Static File Handling etc.
 
 Here, Webpack can also be used for task automation like minification of CSS/JS files and live reloading.
 
@@ -85,4 +91,5 @@ These are the build steps I would follow for a more robust application.
 I could have added more features like Drag & Drop to columns similar to Trello, calender to alert pending tasks etc. if time permitted. Due to ongoing Exams, I could only implement the necessary functions.
 
 ## Deployed Link
+
 `chinmay-actual-assign.netlify.app/`
