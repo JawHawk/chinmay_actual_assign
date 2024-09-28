@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do App</title>
+</head>
+
+<body>
+  <div class="my-5">
+    <h1 class="text-center text-white mb-4">To-Do List Application</h1>
+    
+    <div id="app" class="container p-1">
+      <!-- Header -->
+      <button type="button" class="btn btn-dark btn-lg mb-2 " data-operation="addItem" data-bs-toggle="modal" data-bs-target="#addItemModal">
+        Add Item
+        <img src="/plus.svg" width="20px" />
+      </button>
+      <button type="button" class="btn btn-danger mb-2 ms-2" id="resetButton">
+        Reset Items
+      </button>
+      <button type="button" class="btn btn-success mb-2 ms-2" id="downloadButton">
+        Download JSON
+      </button>
+      <input type="file" id="uploadInput" accept=".json" style="display: none;">
+      <button type="button" class="btn btn-success ms-2 mb-2" id="uploadButton">
+          Upload JSON
+      </button>
+
+      <!-- To Do List Component -->
+      <div class="row g-2">
+        <div class="col-md-4" style="min-width: 325px;">
+          <div class="p-3 dark-bg radius-12">
+            <div class="d-flex justify-content-between align-items-center border-bottom border-secondary mb-2">
+              <div class="text-white-50 fw-bold fs-4 m-2">
+                To Do
+              </div>
+              <select class="form-select sort-select py-0" data-item-column="todo" aria-label="Sort By">
+                <option selected>Default</option>
+                <option value="1">Priority</option>
+                <option value="2">Due Date</option>
+              </select>
+            </div>
+            <div class="d-flex flex-column gap-2" id="task-todo-column">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" style="min-width: 325px;">
+          <div class="p-3 dark-bg radius-12">
+            <div class="d-flex justify-content-between align-items-center border-bottom border-secondary mb-2 ">
+              <div class="text-white-50 fw-bold fs-4 m-2">
+                Doing
+              </div>
+              <select class="form-select sort-select py-0" data-item-column="doing" aria-label="Sort By">
+                <option selected>Default</option>
+                <option value="1">Priority</option>
+                <option value="2">Due Date</option>
+              </select>
+            </div>
+            <div class="d-flex flex-column gap-2" id="task-doing-column">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" style="min-width: 325px;">
+          <div class="p-3 dark-bg radius-12">
+            <div class="d-flex justify-content-between align-items-center border-bottom border-secondary mb-2">
+              <div class="text-white-50 fw-bold fs-4 m-2">
+                Done
+              </div>
+              <select class="form-select sort-select py-0" data-item-column="done" aria-label="Sort By">
+                <option selected>Default</option>
+                <option value="1">Priority</option>
+                <option value="2">Due Date</option>
+              </select>
+            </div>
+            <div class="d-flex flex-column gap-2" id="task-done-column">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!-- Modal for adding/editing a ToDo Item -->
+    <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addItemModalLabel">Add New Task</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="addItemForm">
+              <div class="mb-3">
+                <label for="itemTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="itemTitle" required>
+              </div>
+              <div class="mb-3">
+                <label for="itemDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="itemDescription" rows="3" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="itemDueDate" class="form-label">Due Date</label>
+                <input type="date" class="form-control" id="itemDueDate" required>
+              </div>
+              <div class="mb-3">
+                <label for="itemPriority" class="form-label">Priority</label>
+                <select class="form-select" id="itemPriority" required>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="itemStatus" class="form-label">Status</label>
+                <select class="form-select" id="itemStatus" required>
+                  <option value="todo">To Do</option>
+                  <option value="doing">Doing</option>
+                  <option value="done">Done</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary" id="modalSubmitButton">Add Item</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for showing ToDo Item Details -->
+    <div class="modal fade" id="itemDetailModal" tabindex="-1" aria-labelledby="itemDetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="itemDetailModalLabel">Item Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p id="item-title"></p>
+            <p id="item-description"></p>
+            <p id="item-endDate"></p>
+            <p id="item-priority"></p>
+            <p id="item-status"></p>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
